@@ -1,6 +1,6 @@
 import NavBar from './NavBar';
 import Home from "./Home";
-import BlogList from "./BlogList";
+import BlogComponent from "./BlogComponent";
 
 function App() {
   const title = "Welcome to my newest blog";
@@ -16,7 +16,7 @@ function App() {
         <p>{10}</p>
         <p>{likes > 40 ? "lots of likes" : "Not enough likes"}</p>
         <br/>
-        <BlogList />
+        <BlogComponent />
       </div>
     </div>
   );
