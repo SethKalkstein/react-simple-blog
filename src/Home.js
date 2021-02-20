@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
     // let count = 0;
@@ -22,6 +22,7 @@ const Home = () => {
         setNewHeading(count % 2 == 1 ? 'Original Home Page ' + count  : 'New Home Page ' + count );
         setCount(count + 1);
     }
+    useEffect( () => console.log("use effect has fired from the home component") );
 
     return ( 
         <div className="home">
