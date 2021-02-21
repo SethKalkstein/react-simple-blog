@@ -1,3 +1,7 @@
+# This is a React practice repo
+
+The code will have a whole ton of comments in it, code which is commented out (usually a different way to do something), and just a lot of little experiments in it.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
