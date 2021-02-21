@@ -17,9 +17,10 @@ const BlogComponent = () => {
     //     setBlogs(newBlogs);
     // }
 
-useEffect( () => console.log("use effect has fired from the blog component"), [name] );
+    useEffect( () => console.log("use effect has fired from the blog component"), [name] );
 //set dependency with an array of state changes (for the second arguament) that you want to trigger the useEffect function
 //no second argument means that useEffect will trigger from any state change within the component. 
+//an empty array will only fire useEffect when the component initially renders.
     return ( 
         <div className="blogComponent">
             <h1>Blog Component</h1>
