@@ -9,6 +9,7 @@ const BlogComponent = () => {
         {title: "Let's Celebrate the Blog", body: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, laboriosam. Quos veniam tempora odit qui cum quaerat ullam deleniti laboriosam nobis vitae. Hic dolores laborum autem numquam ullam quaerat sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut ut placeat omnis cum, eos aliquam quisquam, repellendus esse rem in, odio sit fugit itaque dolores corrupti consequuntur cumque. Nostrum, nemo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis laborum sint rem. Dignissimos asperiores voluptate esse fuga ab voluptates quos distinctio praesentium ut, odit facilis repellat? Adipisci magni nam debitis!", author: "Adrienne", id: 2},
         {title: "Let's do web dev stuff", body: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, laboriosam. Quos veniam tempora odit qui cum quaerat ullam deleniti laboriosam nobis vitae. Hic dolores laborum autem numquam ullam quaerat sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut ut placeat omnis cum, eos aliquam quisquam, repellendus esse rem in, odio sit fugit itaque dolores corrupti consequuntur cumque. Nostrum, nemo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis laborum sint rem. Dignissimos asperiores voluptate esse fuga ab voluptates quos distinctio praesentium ut, odit facilis repellat? Adipisci magni nam debitis!", author: "Rocky", id: 3}
     ]); */
+    const [isLoading, setIsLoading] = useState(true);
 
     const [name, setName] = useState("Mr T");
 
@@ -19,10 +20,14 @@ const BlogComponent = () => {
     // }
 
     // useEffect( () => console.log("use effect has fired from the blog component"), [name] );
-    useEffect( () => fetch("http://localhost:8000/blogs")
+    useEffect( () =>  setTimeout( () => {
+            fetch("http://localhost:8000/blogs")
             .then(res => res.json() )
-            .then(data => setBlogs(data))
-            // .then( data =>console.log(data) )
+            .then(data => {
+                setBlogs(data);
+                setIsLoading(false);
+            });
+        }, 1000)
     , [] );
 //set dependency with an array of state changes (for the second arguament) that you want to trigger the useEffect function
 //no second argument means that useEffect will trigger from any state change within the component. 
@@ -31,6 +36,7 @@ const BlogComponent = () => {
         <div className="blogComponent">
             <h1>Blog Component</h1>
             {/* blogs property declaration is a prop, it could be called anything. The value is inside the curly brackets and is the value, in this case we used the 'blogs' variable and also named the prop blogs */}
+            {isLoading && <div>Loading...</div> }
             <BlogList blogs={blogs} title="Full Blog List" handleDelete = { handleDelete } />
             <BlogList blogs={blogs.filter((blog) => blog.author === 'Rocky')} title="Rocky's Blog List" handleDelete = { handleDelete } />
 {/*             {blogs && <BlogList blogs={blogs} title="Full Blog List" handleDelete = { handleDelete } />}
