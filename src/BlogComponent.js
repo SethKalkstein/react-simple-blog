@@ -12,7 +12,7 @@ const BlogComponent = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [name, setName] = useState("Mr T");
-
+    const [error, setError] = useState(null);
     const handleDelete = (id) => setBlogs(blogs.filter(blog => blog.id != id));
     // const handleDelete = (id) => {
     //     const newBlogs = blogs.filter(blog => blog.id !== id);
@@ -22,18 +22,29 @@ const BlogComponent = () => {
     // useEffect( () => console.log("use effect has fired from the blog component"), [name] );
     useEffect( () =>  setTimeout( () => {
             fetch("http://localhost:8000/blogs")
-            .then(res => res.json() )
+            .then(res => {
+                if(!res.ok){
+                    throw Error('could not fetch the data for that resource');
+                }
+                return res.json();
+            })
             .then(data => {
                 setBlogs(data);
                 setIsLoading(false);
+                setError(null);
+            })
+            .catch( err => { 
+                setIsLoading(false);
+                setError(err.message) 
             });
-        }, 1000)
+        }, 2000)
     , [] );
 //set dependency with an array of state changes (for the second arguament) that you want to trigger the useEffect function
 //no second argument means that useEffect will trigger from any state change within the component. 
 //an empty array will only fire useEffect when the component initially renders.
     return ( 
         <div className="blogComponent">
+            {error && <h1 style={{fontSize: "70px", color: "red" }}>{ error }</h1> }
             <h1>Blog Component</h1>
             {/* blogs property declaration is a prop, it could be called anything. The value is inside the curly brackets and is the value, in this case we used the 'blogs' variable and also named the prop blogs */}
             {isLoading && <div>Loading...</div> }
