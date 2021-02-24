@@ -3,6 +3,7 @@ import Home from "./Home";
 import BlogComponent from "./BlogComponent";
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Create from './Create';
 
 function App() {
   const title = "Welcome to my newest blog";
@@ -16,13 +17,16 @@ function App() {
         <NavBar />
         <div className="content">
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
               <p>liked {likes} times</p>
               <p>{10}</p>
               <p>{likes > 40 ? "lots of likes" : "Not enough likes"}</p>
               <br/>
               <BlogComponent />
+            </Route>  
+            <Route exact path="/create">
+              <Create />
             </Route>  
           </Switch>
         </div>
