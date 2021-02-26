@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
-import useFetch from "./usefetch";
+import useFetch from "./useFetch";
 
 const BlogComponent = () => {
     const { data: blogs, isLoading, error} = useFetch("http://localhost:8000/blogs");
