@@ -4,6 +4,7 @@ import BlogComponent from "./BlogComponent";
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from './Create';
+import BlogDetails from './BlogDetails';
 
 function App() {
   const title = "Welcome to my newest blog";
@@ -27,6 +28,9 @@ function App() {
             </Route>  
             <Route exact path="/create">
               <Create />
+            </Route>  
+            <Route path="/blogs/:id">
+              <BlogDetails />
             </Route>  
           </Switch>
         </div>
