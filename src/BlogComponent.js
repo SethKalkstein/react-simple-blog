@@ -31,8 +31,8 @@ const BlogComponent = () => {
             <h1>Blog Component</h1>
             {/* blogs property declaration is a prop, it could be called anything. The value is inside the curly brackets and is the value, in this case we used the 'blogs' variable and also named the prop blogs */}
             {isLoading && <div>Loading...</div> }
-            <BlogList blogs={blogs} title="Full Blog List" />
-            <BlogList blogs={blogs.filter((blog) => blog.author === 'Rocky')} title="Rocky's Blog List" />
+            {blogs && <BlogList blogs={blogs} title="Full Blog List" />}
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.author === 'Rocky')} title="Rocky's Blog List" />}
 {/*             <BlogList blogs={blogs} title="Full Blog List" handleDelete = { handleDelete } />
             <BlogList blogs={blogs.filter((blog) => blog.author === 'Rocky')} title="Rocky's Blog List" handleDelete = { handleDelete } /> */}
 {/*             {blogs && <BlogList blogs={blogs} title="Full Blog List" handleDelete = { handleDelete } />}
