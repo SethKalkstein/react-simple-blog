@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
 
@@ -6,6 +7,7 @@ const Create = () => {
     const [body, setBody] = useState("");
     const [author, setAuthor] = useState("Rocky");
     const [isLoading, setIsLoading] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +23,9 @@ const Create = () => {
             setTimeout(()=>{
                 console.log("success");
                 setIsLoading(false);
+                history.push('/'); //adds a new route to the history and brings the user there, aka reroutes them 
+                // history.go(-2); goes back in history twice (like hitting the browswer's back arrow 2 times.)
+                // history.go(1); goes forward in history once (like hitting the browswer's forward arrow 1 time.)
             }, 500)
 
         })
